@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Centro Cultural Banco do Brasil de São Paulo - Programação cultural e cadastro de pessoas em eventos com pesquisa de campo no local.">
+  <title>CCBB São Paulo | Programação & Inscrição em Eventos</title>
+  
+  <!-- Tipografia Curatorial: Cinzel (Display Nobre) e Plus Jakarta Sans (Interface Moderna) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Estilos Próprios da Aplicação (CSS3 Puro, Sem Frameworks) -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ========================================================
+       CABEÇALHO PRINCIPAL INSTITUCIONAL
+       ======================================================== -->
+  <header class="cabecalho-principal">
+    <div class="container container-cabecalho">
+      
+      <!-- Marca CCBB com Emblema Institucional -->
+      <a href="#visao-programacao" class="marca-ccbb" aria-label="CCBB São Paulo - Início">
+        <div class="emblema-bb" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+            <path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/>
+          </svg>
+        </div>
+        <div class="identidade-textual">
+          <span class="titulo-portal">CCBB SÃO PAULO</span>
+          <span class="subtitulo-portal">Centro Cultural Banco do Brasil • Edifício Histórico</span>
+        </div>
+      </a>
+
+      <!-- Navegação por Abas (Programação x Meus Ingressos) -->
+      <nav class="navegacao-abas" aria-label="Navegação do visitante">
+        <button id="btn-aba-programacao" class="btn-aba ativo" type="button">
+          <svg class="icone-btn" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <path d="M3 9h18M9 21V9"/>
+          </svg>
+          <span>Programação em Cartaz</span>
+        </button>
+        <button id="btn-aba-ingressos" class="btn-aba" type="button">
+          <svg class="icone-btn" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/>
+            <path d="M13 5v2m0 4v2m0 4v2"/>
+          </svg>
+          <span>Meus Ingressos (<span id="contador-meus-ingressos">0</span>)</span>
+        </button>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- ========================================================
+       HERO CURATORIAL COM FOTOGRAFIA REAL DO EDIFÍCIO
+       ======================================================== -->
+  <section class="secao-hero">
+    <div class="container container-hero-grid">
+      
+      <div class="conteudo-hero">
+        <div class="tag-localizacao">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+          <span>Rua Álvares Penteado, 112 • Centro Histórico, São Paulo</span>
+        </div>
+
+        <h1 class="titulo-hero">Arte, Cinema e História no Centro de São Paulo</h1>
+        
+        <p class="texto-hero">
+          Conheça as exposições na Rotunda central, mostras internacionais de cinema, espetáculos teatrais
+          e atividades do CCBB Educativo. Todas as atrações contam com entrada gratuita e reserva de horário antecipada.
+        </p>
+
+        <div class="dados-rapidos">
+          <div class="item-dado">
+            <span class="rotulo-dado">Funcionamento</span>
+            <span class="valor-dado">Quarta a Segunda, 9h às 20h (Fechado às terças)</span>
+          </div>
+          <div class="item-dado">
+            <span class="rotulo-dado">Política de Acesso</span>
+            <span class="valor-dado">Entrada Gratuita com Horário Marcado</span>
+          </div>
+          <div class="item-dado">
+            <span class="rotulo-dado">Acesso por Metrô</span>
+            <span class="valor-dado">Estações São Bento e Sé (Linha 1-Azul)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fotografia Real da Fachada Registrada pela Equipe -->
+      <aside class="hero-imagem-destaque" aria-label="Fotografia do CCBB São Paulo">
+        <img 
+          src="assets/ccbb_entrada_marlene_barros.jpg" 
+          alt="Entrada monumental do CCBB São Paulo com a placa Banco do Brasil e cartaz da exposição Marlene Barros"
+          class="img-hero-foto"
+        >
+        <span class="legenda-foto-hero">Entrada do Edifício Histórico • Rua Álvares Penteado</span>
+      </aside>
+
+    </div>
+  </section>
+
+  <!-- ========================================================
+       ÁREA DE PROGRAMAÇÃO CULTURAL (ABA 1)
+       ======================================================== -->
+  <div id="visao-programacao" class="transicao-aba">
+    
+    <!-- Barra de Filtros e Busca Dinâmica -->
+    <section class="secao-filtros">
+      <div class="container container-filtros">
+        
+        <!-- Campo de Busca Dinâmica (Evento 'input') -->
+        <div class="caixa-busca">
+          <svg class="icone-busca" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input 
+            type="text" 
+            id="campo-busca" 
+            placeholder="Pesquisar por título, artista, gênero ou espaço físico..."
+            aria-label="Campo de busca de eventos"
+            autocomplete="off"
+          >
+          <button id="btn-limpar-busca" class="btn-limpar oculto" type="button" title="Limpar busca" aria-label="Limpar campo de pesquisa">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Filtros de Categoria (Evento 'click') -->
+        <div class="botoes-categoria" role="group" aria-label="Filtrar atrações por categoria">
+          <button class="btn-filtro ativo" data-categoria="todos" type="button">
+            Todas as Atrações
+          </button>
+          <button class="btn-filtro" data-categoria="exposicao" type="button">
+            Exposições
+          </button>
+          <button class="btn-filtro" data-categoria="cinema" type="button">
+            Cinema
+          </button>
+          <button class="btn-filtro" data-categoria="teatro" type="button">
+            Teatro & Dança
+          </button>
+          <button class="btn-filtro" data-categoria="educativo" type="button">
+            Educativo & Oficinas
+          </button>
+        </div>
+
+        <!-- Barra de Status com Contagem -->
+        <div class="barra-status">
+          <span id="contador-resultados">Carregando atrações...</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Galeria de Eventos em CSS Grid -->
+    <main class="container">
+      <section id="grade-eventos" class="grade-eventos" aria-live="polite">
+        <!-- Cards gerados via script.js (eventos.forEach) -->
+      </section>
+
+      <!-- Estado Vazio (Sem Resultados) -->
+      <div id="mensagem-sem-resultados" class="alerta-vazio oculto">
+        <div class="icone-vazio-svg" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            <line x1="8" y1="11" x2="14" y2="11"/>
+          </svg>
+        </div>
+        <h3 class="titulo-vazio">Nenhuma atração encontrada</h3>
+        <p class="descricao-vazio">Tente pesquisar por outros termos ou clique em "Todas as Atrações" para restabelecer a lista completa.</p>
+      </div>
+    </main>
+
+    <!-- ========================================================
+         SEÇÃO ESPECIAL: PESQUISA DE CAMPO & VISITA TÉCNICA
+         ======================================================== -->
+    <section class="container secao-pesquisa-campo">
+      <div class="card-pesquisa-campo">
+        <div class="imagem-equipe-container">
+          <img 
+            src="assets/equipe_fatec_ccbb.jpg" 
+            alt="Equipe de estudantes desenvolvedores da FATEC na porta do Centro Cultural Banco do Brasil de São Paulo"
+            class="img-equipe-fatec"
+          >
+          <span class="badge-pesquisa">Pesquisa de Campo • Visita Técnica</span>
+        </div>
+        <div class="conteudo-pesquisa-campo">
+          <span class="tag-secao">Desenvolvimento Acadêmico</span>
+          <h2 class="titulo-pesquisa-campo">Visita Técnica e Imersão no CCBB São Paulo</h2>
+          <p class="texto-pesquisa-campo">
+            Para propor uma solução que superasse para sistema atual, os estudantes do 
+            <strong>2º Semestre do curso de Análise e Desenvolvimento de Sistemas (FATEC)</strong> realizaram uma visita técnica presencial
+            ao edifício histórico na Rua Álvares Penteado.
+          </p>
+          
+          
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ========================================================
+       ÁREA DE MEUS INGRESSOS (ABA 2)
+       ======================================================== -->
+  <section id="visao-ingressos" class="container secao-meus-ingressos transicao-aba oculto">
+    
+    <div class="cabecalho-secao-ingressos">
+      <div class="tag-secao">Gestão de Visitante</div>
+      <h2 class="titulo-secao">Ingressos Registrados</h2>
+      <p class="subtitulo-secao">Consulte os comprovantes emitidos nesta sessão. Apresente o código na portaria para acesso ao edifício.</p>
+    </div>
+
+    <!-- Grade de Ingressos do Usuário -->
+    <div id="lista-meus-ingressos" class="grade-ingressos">
+      <!-- Ingressos dinâmicos inseridos via JavaScript -->
+    </div>
+
+    <!-- Mensagem quando não há ingressos cadastrados -->
+    <div id="mensagem-sem-ingressos" class="alerta-vazio">
+      <div class="icone-vazio-svg" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/>
+          <line x1="12" y1="11" x2="12" y2="17"/>
+        </svg>
+      </div>
+      <h3 class="titulo-vazio">Você ainda não reservou ingressos</h3>
+      <p class="descricao-vazio">Escolha uma das atrações disponíveis na programação para emitir sua credencial gratuita.</p>
+      <button id="btn-ir-programacao" class="btn-acao-secundaria" type="button">
+        Ver Programação
+      </button>
+    </div>
+
+  </section>
+
+  <!-- ========================================================
+       MODAL 1: FORMULÁRIO DE INSCRIÇÃO NO EVENTO
+       ======================================================== -->
+  <div id="modal-inscricao" class="modal-fundo oculto" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
+    <div class="modal-conteudo">
+      
+      <!-- Cabeçalho do Modal -->
+      <header class="modal-cabecalho">
+        <div>
+          <span class="tag-modal">Entrada Gratuita</span>
+          <h3 id="modal-titulo" class="modal-titulo-evento">Nome do Evento</h3>
+          <p id="modal-espaco" class="modal-subtitulo-evento">Local no Edifício</p>
+        </div>
+        <button id="btn-fechar-modal" class="btn-fechar-modal" type="button" aria-label="Fechar janela">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </header>
+
+      <!-- Formulário de Inscrição -->
+      <form id="form-inscricao" class="modal-corpo">
+        
+        <!-- Campo Oculto com o ID do Evento -->
+        <input type="hidden" id="evento-id-selecionado">
+
+        <!-- 1. Horário de Visita -->
+        <div class="campo-grupo">
+          <label class="rotulo-campo" for="select-horario">
+            1. Horário da Sessão <span class="campo-obrigatorio">*</span>
+          </label>
+          <div class="select-envoltorio">
+            <select id="select-horario" class="campo-select" required>
+              <!-- Preenchido dinamicamente com horários via JS -->
+            </select>
+          </div>
+          <span class="ajuda-campo">O controle por faixa horária assegura a conservação das galerias históricas.</span>
+        </div>
+
+        <!-- 2. Nome do Participante -->
+        <div class="campo-grupo">
+          <label class="rotulo-campo" for="campo-nome">
+            2. Nome Completo <span class="campo-obrigatorio">*</span>
+          </label>
+          <input 
+            type="text" 
+            id="campo-nome" 
+            class="campo-texto" 
+            placeholder="Ex: Carlos Eduardo de Oliveira" 
+            required
+          >
+        </div>
+
+        <!-- 3. Contato (E-mail e WhatsApp) -->
+        <div class="linha-dupla">
+          <div class="campo-grupo">
+            <label class="rotulo-campo" for="campo-email">
+              3. E-mail de Contato <span class="campo-obrigatorio">*</span>
+            </label>
+            <input 
+              type="email" 
+              id="campo-email" 
+              class="campo-texto" 
+              placeholder="seuemail@exemplo.com" 
+              required
+            >
+          </div>
+
+          <div class="campo-grupo">
+            <label class="rotulo-campo" for="campo-telefone">
+              4. WhatsApp / Telefone <span class="campo-obrigatorio">*</span>
+            </label>
+            <input 
+              type="tel" 
+              id="campo-telefone" 
+              class="campo-texto" 
+              placeholder="(11) 98765-4321" 
+              required
+            >
+          </div>
+        </div>
+
+        <!-- 4. Documento (CPF) -->
+        <div class="campo-grupo">
+          <label class="rotulo-campo" for="campo-cpf">
+            5. Documento (CPF) <span class="campo-obrigatorio">*</span>
+          </label>
+          <input 
+            type="text" 
+            id="campo-cpf" 
+            class="campo-texto" 
+            placeholder="000.000.000-00" 
+            maxlength="14"
+            required
+          >
+          <span class="ajuda-campo">Documento para conferência na recepção do centro cultural.</span>
+        </div>
+
+        <!-- 5. Acessibilidade e Apoio Inclusivo -->
+        <div class="caixa-acessibilidade">
+          <label class="rotulo-checkbox">
+            <input type="checkbox" id="check-acessibilidade">
+            <span>Necessito de assistência de acessibilidade (Cadeira de Rodas, Libras ou Audiodescrição)</span>
+          </label>
+        </div>
+
+        <!-- Mensagem de Validação / Erro -->
+        <div id="alerta-formulario" class="alerta-erro oculto" role="alert"></div>
+
+        <!-- Botões de Ação -->
+        <footer class="modal-rodape">
+          <button type="button" id="btn-cancelar-inscricao" class="btn-acao-secundaria">
+            Cancelar
+          </button>
+          <button type="submit" id="btn-confirmar-inscricao" class="btn-acao-primaria">
+            Confirmar Reserva
+          </button>
+        </footer>
+
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       MODAL 2: COMPROVANTE DIGITAL (SMART CULTURAL PASS)
+       ======================================================== -->
+  <div id="modal-comprovante" class="modal-fundo oculto" role="dialog" aria-modal="true" aria-labelledby="comprovante-titulo">
+    <div class="modal-conteudo modal-comprovante-conteudo">
+      
+      <!-- Topo com Ícone Vetorial de Sucesso -->
+      <div class="topo-sucesso">
+        <div class="circulo-icone-sucesso" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <h3 id="comprovante-titulo" class="titulo-sucesso">Inscrição Confirmada</h3>
+        <p class="subtitulo-sucesso">Sua credencial de acesso ao CCBB São Paulo foi emitida com sucesso.</p>
+      </div>
+
+      <!-- Bilhete Arquitetural Elegante -->
+      <article class="bilhete-cultural">
+        <div class="bilhete-topo">
+          <span class="bilhete-instituicao">CENTRO CULTURAL BANCO DO BRASIL • SP</span>
+          <span id="comprovante-codigo" class="bilhete-codigo">CCBB-SP-0000</span>
+        </div>
+
+        <div class="bilhete-corpo">
+          <h4 id="comprovante-evento-nome" class="bilhete-evento">Nome do Evento</h4>
+          <p id="comprovante-espaco" class="bilhete-espaco">Local no Edifício</p>
+          
+          <div class="grade-detalhes-bilhete">
+            <div>
+              <span class="rotulo-mini">Horário da Visita</span>
+              <strong id="comprovante-horario" class="valor-mini">14:00</strong>
+            </div>
+            <div>
+              <span class="rotulo-mini">Visitante</span>
+              <strong id="comprovante-nome" class="valor-mini">Nome do Visitante</strong>
+            </div>
+            <div>
+              <span class="rotulo-mini">Documento</span>
+              <strong id="comprovante-cpf" class="valor-mini">000.000.000-00</strong>
+            </div>
+            <div>
+              <span class="rotulo-mini">Tarifa</span>
+              <strong class="valor-mini valor-gratis">Acesso Gratuito</strong>
+            </div>
+          </div>
+
+          <!-- QR Code Vetorial em SVG Puro (Sem Dependências Externas) -->
+          <div class="area-qrcode">
+            <svg class="desenho-qrcode" viewBox="0 0 100 100" width="136" height="136" aria-label="Código QR de validação do ingresso">
+              <!-- Marcadores de Posição dos Cantos -->
+              <rect x="6" y="6" width="26" height="26" rx="4" fill="#002D72" />
+              <rect x="10" y="10" width="18" height="18" rx="2" fill="#FFFFFF" />
+              <rect x="14" y="14" width="10" height="10" rx="1" fill="#002D72" />
+
+              <rect x="68" y="6" width="26" height="26" rx="4" fill="#002D72" />
+              <rect x="72" y="10" width="18" height="18" rx="2" fill="#FFFFFF" />
+              <rect x="76" y="14" width="10" height="10" rx="1" fill="#002D72" />
+
+              <rect x="6" y="68" width="26" height="26" rx="4" fill="#002D72" />
+              <rect x="10" y="72" width="18" height="18" rx="2" fill="#FFFFFF" />
+              <rect x="14" y="76" width="10" height="10" rx="1" fill="#002D72" />
+
+              <!-- Matriz Criptográfica Simulada -->
+              <rect x="36" y="8" width="8" height="8" fill="#002D72" />
+              <rect x="48" y="12" width="14" height="6" fill="#002D72" />
+              <rect x="38" y="24" width="6" height="16" fill="#002D72" />
+              <rect x="48" y="22" width="14" height="8" fill="#B45309" />
+              <rect x="8" y="38" width="16" height="8" fill="#002D72" />
+              <rect x="28" y="44" width="10" height="10" fill="#002D72" />
+              <rect x="42" y="38" width="16" height="16" rx="2" fill="#002D72" />
+              <rect x="62" y="38" width="8" height="24" fill="#002D72" />
+              <rect x="74" y="44" width="18" height="8" fill="#002D72" />
+              <rect x="38" y="58" width="8" height="18" fill="#002D72" />
+              <rect x="50" y="62" width="16" height="8" fill="#002D72" />
+              <rect x="70" y="72" width="22" height="18" fill="#002D72" />
+              <rect x="36" y="80" width="10" height="12" fill="#B45309" />
+              <rect x="50" y="76" width="14" height="16" fill="#002D72" />
+            </svg>
+            <p class="instrucao-portaria">Apresente esta credencial na catraca de entrada do edifício.</p>
+          </div>
+
+        </div>
+      </article>
+
+      <!-- Ações do Comprovante -->
+      <div class="botoes-comprovante">
+        <button id="btn-imprimir-comprovante" class="btn-acao-secundaria" type="button">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 6 2 18 2 18 9"/>
+            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+            <rect x="6" y="14" width="12" height="8"/>
+          </svg>
+          <span>Imprimir / Salvar PDF</span>
+        </button>
+        <button id="btn-concluir-comprovante" class="btn-acao-primaria" type="button">
+          Concluir
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================
+       RODAPÉ INSTITUCIONAL
+       ======================================================== -->
+  <footer class="rodape-principal">
+    <div class="container container-rodape">
+      
+      <div class="coluna-rodape">
+        <h4 class="titulo-coluna-rodape">Centro Cultural Banco do Brasil</h4>
+        <p class="texto-rodape">
+          Rua Álvares Penteado, 112 - Centro Histórico<br>
+          São Paulo - SP • CEP: 01012-000<br>
+          Central de Atendimento: (11) 4004-0001
+        </p>
+      </div>
+
+      <div class="coluna-rodape">
+        <h4 class="titulo-coluna-rodape">Horários e Visitação</h4>
+        <p class="texto-rodape">
+          De quarta a segunda-feira, das 9h às 20h.<br>
+          Fechado às terças-feiras para manutenção do patrimônio.<br>
+          Todas as exposições contam com entrada franca.
+        </p>
+      </div>
+
+      <div class="coluna-rodape">
+        <h4 class="titulo-coluna-rodape">Projeto Integrador (FATEC ADS)</h4>
+        <p class="texto-rodape">
+          Desenvolvido com HTML5 Semântico, CSS3 (Flexbox/Grid) e JavaScript Puro.<br>
+          Concebido sob padrões rigorosos de acessibilidade e pesquisa in loco.
+        </p>
+      </div>
+
+    </div>
+    
+    <div class="barra-copyright">
+      <p>© 2026 Centro Cultural Banco do Brasil — Protótipo de Engenharia Web FATEC</p>
+    </div>
+  </footer>
+
+  <!-- Script Único Conforme as Regras Pedagógicas da FATEC -->
+  <script src="script.js"></script>
+</body>
+</html>

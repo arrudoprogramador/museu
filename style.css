@@ -1,0 +1,1350 @@
+/* ==========================================================================
+   CCBB SÃO PAULO — DESIGN SYSTEM CURATORIAL & ANIMAÇÕES LEVES
+   Projeto: FATEC ADS (2º Semestre) • Zero Frameworks
+   Padrão: Clean, Profissional, Tipografia Editorial e Micro-interações
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. TOKENS GLOBAIS (:root) E RESET TIPOGRÁFICO
+   -------------------------------------------------------------------------- */
+:root {
+  /* Identidade Cromática CCBB & Patrimônio Histórico */
+  --azul-ccbb: #002D72;
+  --azul-ccbb-profundo: #001A42;
+  --azul-ccbb-claro: #0A4EB2;
+  --azul-ccbb-suave: #EBF2FA;
+  --dourado-patrimonial: #B45309;
+  --dourado-suave: #FEF3C7;
+  --amarelo-bb: #FEE500;
+
+  /* Superfícies e Fundos Arquiteturais */
+  --fundo-pagina: #F8F9FA;
+  --fundo-card: #FFFFFF;
+  --fundo-elevado: #F1F5F9;
+  --borda-sutil: #E2E8F0;
+  --borda-media: #CBD5E1;
+  --borda-foco: #002D72;
+
+  /* Tipografia Estruturada */
+  --fonte-display: 'Cinzel', Georgia, serif;
+  --fonte-interface: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Cores de Texto com Contraste Curatorial */
+  --texto-principal: #0F172A;
+  --texto-secundario: #475569;
+  --texto-terciario: #94A3B8;
+  --texto-branco: #FFFFFF;
+
+  /* Status de Capacidade e Lotação */
+  --status-disponivel: #059669;
+  --status-disponivel-fundo: #ECFDF5;
+  --status-baixo: #D97706;
+  --status-baixo-fundo: #FFFBEB;
+  --status-esgotado: #DC2626;
+  --status-esgotado-fundo: #FEF2F2;
+
+  /* Curvas e Sombras Suaves */
+  --raio-card: 14px;
+  --raio-botao: 8px;
+  --sombra-card: 0 4px 6px -1px rgba(15, 23, 42, 0.05), 0 2px 4px -2px rgba(15, 23, 42, 0.03);
+  --sombra-hover: 0 16px 24px -4px rgba(15, 23, 42, 0.08), 0 6px 12px -3px rgba(15, 23, 42, 0.04);
+  --sombra-modal: 0 25px 50px -12px rgba(15, 23, 42, 0.25);
+
+  /* Curvas de Transição Suave */
+  --transicao-suave: cubic-bezier(0.16, 1, 0.3, 1);
+  --tempo-transicao: 0.25s;
+}
+
+/* Reset Universal */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--fonte-interface);
+  background-color: var(--fundo-pagina);
+  color: var(--texto-principal);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Utilitários Estruturais */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.oculto {
+  display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   2. CABEÇALHO PRINCIPAL INSTITUCIONAL
+   -------------------------------------------------------------------------- */
+.cabecalho-principal {
+  background-color: var(--azul-ccbb-profundo);
+  color: var(--texto-branco);
+  border-bottom: 2.5px solid var(--amarelo-bb);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0, 26, 66, 0.15);
+  backdrop-filter: blur(8px);
+}
+
+.container-cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.marca-ccbb {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity var(--tempo-transicao) ease;
+}
+
+.marca-ccbb:hover {
+  opacity: 0.95;
+}
+
+.emblema-bb {
+  background-color: var(--amarelo-bb);
+  color: var(--azul-ccbb-profundo);
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--tempo-transicao) var(--transicao-suave);
+}
+
+.marca-ccbb:hover .emblema-bb {
+  transform: scale(1.04);
+}
+
+.identidade-textual {
+  display: flex;
+  flex-direction: column;
+}
+
+.titulo-portal {
+  font-family: var(--fonte-display);
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  color: #FFFFFF;
+}
+
+.subtitulo-portal {
+  font-size: 11.5px;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.3px;
+}
+
+/* Navegação por Abas */
+.navegacao-abas {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-aba {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 8px 18px;
+  border-radius: 24px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all var(--tempo-transicao) var(--transicao-suave);
+}
+
+.btn-aba:hover {
+  background-color: rgba(255, 255, 255, 0.16);
+  color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.35);
+  transform: translateY(-1px);
+}
+
+.btn-aba.ativo {
+  background-color: #FFFFFF;
+  color: var(--azul-ccbb);
+  border-color: #FFFFFF;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+}
+
+/* --------------------------------------------------------------------------
+   3. SEÇÃO HERO CURATORIAL COM GRID E FOTOGRAFIA
+   -------------------------------------------------------------------------- */
+.secao-hero {
+  background: linear-gradient(135deg, #001A42 0%, #002D72 50%, #001A42 100%);
+  color: var(--texto-branco);
+  padding: 48px 0 40px 0;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--borda-sutil);
+}
+
+.secao-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+}
+
+.container-hero-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 36px;
+  align-items: center;
+}
+
+.conteudo-hero {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.tag-localizacao {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #FEF3C7;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(4px);
+}
+
+.titulo-hero {
+  font-family: var(--fonte-display);
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 0.5px;
+}
+
+.texto-hero {
+  font-size: 14.5px;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.7;
+}
+
+.dados-rapidos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 8px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.item-dado {
+  background-color: rgba(255, 255, 255, 0.07);
+  padding: 9px 16px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  transition: transform var(--tempo-transicao) var(--transicao-suave);
+}
+
+.item-dado:hover {
+  transform: translateY(-2px);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.rotulo-dado {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #FCD34D;
+  font-weight: 700;
+}
+
+.valor-dado {
+  font-size: 12.5px;
+  font-weight: 500;
+}
+
+/* Destaque Fotográfico do Hero */
+.hero-imagem-destaque {
+  position: relative;
+  border-radius: var(--raio-card);
+  overflow: hidden;
+  box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.45);
+  border: 2px solid rgba(255, 255, 255, 0.18);
+  transition: transform var(--tempo-transicao) var(--transicao-suave);
+}
+
+.hero-imagem-destaque:hover {
+  transform: scale(1.015);
+}
+
+.img-hero-foto {
+  width: 100%;
+  height: 330px;
+  object-fit: cover;
+  display: block;
+}
+
+.legenda-foto-hero {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 26, 66, 0.95), transparent);
+  color: #FFFFFF;
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 20px 16px 10px 16px;
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   4. SEÇÃO DE FILTROS E BUSCA DINÂMICA
+   -------------------------------------------------------------------------- */
+.secao-filtros {
+  padding: 32px 0 16px 0;
+}
+
+.container-filtros {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.caixa-busca {
+  position: relative;
+  width: 100%;
+}
+
+.icone-busca {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--texto-secundario);
+  pointer-events: none;
+  transition: color var(--tempo-transicao) ease;
+}
+
+#campo-busca {
+  width: 100%;
+  padding: 14px 44px 14px 48px;
+  font-family: inherit;
+  font-size: 14.5px;
+  border: 1.5px solid var(--borda-sutil);
+  border-radius: 30px;
+  background-color: var(--fundo-card);
+  color: var(--texto-principal);
+  transition: all var(--tempo-transicao) var(--transicao-suave);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+#campo-busca:focus {
+  outline: none;
+  border-color: var(--azul-ccbb);
+  box-shadow: 0 0 0 4px rgba(0, 45, 114, 0.12);
+  background-color: #FFFFFF;
+}
+
+#campo-busca:focus + .icone-busca {
+  color: var(--azul-ccbb);
+}
+
+.btn-limpar {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: var(--texto-terciario);
+  cursor: pointer;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all var(--tempo-transicao) ease;
+}
+
+.btn-limpar:hover {
+  color: var(--texto-principal);
+  background-color: var(--fundo-elevado);
+}
+
+/* Botões de Categoria */
+.botoes-categoria {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.btn-filtro {
+  background-color: var(--fundo-card);
+  color: var(--texto-secundario);
+  border: 1px solid var(--borda-sutil);
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--tempo-transicao) var(--transicao-suave);
+}
+
+.btn-filtro:hover {
+  color: var(--texto-principal);
+  border-color: var(--borda-media);
+  transform: translateY(-1px);
+}
+
+.btn-filtro.ativo {
+  background-color: var(--azul-ccbb);
+  color: #FFFFFF;
+  border-color: var(--azul-ccbb);
+  box-shadow: 0 2px 6px rgba(0, 45, 114, 0.2);
+}
+
+.barra-status {
+  font-size: 13px;
+  color: var(--texto-secundario);
+  font-weight: 500;
+}
+
+/* --------------------------------------------------------------------------
+   5. GRADE DE EVENTOS (CSS GRID) E CARDS
+   -------------------------------------------------------------------------- */
+.grade-eventos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  gap: 28px;
+  margin-top: 16px;
+  margin-bottom: 56px;
+}
+
+.card-evento {
+  background-color: var(--fundo-card);
+  border: 1px solid var(--borda-sutil);
+  border-radius: var(--raio-card);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--sombra-card);
+  transition: transform var(--tempo-transicao) var(--transicao-suave),
+              box-shadow var(--tempo-transicao) var(--transicao-suave),
+              border-color var(--tempo-transicao) ease;
+  animation: cardFadeIn 0.35s var(--transicao-suave) backwards;
+}
+
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card-evento:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--sombra-hover);
+  border-color: rgba(0, 45, 114, 0.2);
+}
+
+.card-evento.esgotado {
+  opacity: 0.88;
+}
+
+.card-imagem-container {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  background-color: #E2E8F0;
+  overflow: hidden;
+}
+
+.card-imagem {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s var(--transicao-suave);
+}
+
+.card-evento:hover .card-imagem {
+  transform: scale(1.04);
+}
+
+.badge-categoria {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background-color: rgba(15, 23, 42, 0.82);
+  color: #FFFFFF;
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  backdrop-filter: blur(6px);
+}
+
+.badge-preco {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background-color: var(--amarelo-bb);
+  color: var(--azul-ccbb-profundo);
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.card-corpo {
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.card-espaco {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--dourado-patrimonial);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-bottom: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.card-titulo {
+  font-family: var(--fonte-interface);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--texto-principal);
+  line-height: 1.35;
+  margin-bottom: 8px;
+}
+
+.card-descricao {
+  font-size: 13.5px;
+  color: var(--texto-secundario);
+  margin-bottom: 18px;
+  line-height: 1.6;
+  flex-grow: 1;
+}
+
+.card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 14px;
+  border-top: 1px solid var(--borda-sutil);
+  margin-bottom: 16px;
+  font-size: 12px;
+}
+
+.card-periodo {
+  color: var(--texto-secundario);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Indicadores de Vagas Dinâmicos com Animação Leve */
+.status-vaga {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.ponto-status {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.vaga-disponivel {
+  color: var(--status-disponivel);
+}
+.vaga-disponivel .ponto-status {
+  background-color: var(--status-disponivel);
+  animation: pulseSuave 2s infinite ease-in-out;
+}
+
+@keyframes pulseSuave {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.25); opacity: 0.7; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.vaga-baixa {
+  color: var(--status-baixo);
+}
+.vaga-baixa .ponto-status {
+  background-color: var(--status-baixo);
+}
+
+.vaga-esgotada {
+  color: var(--status-esgotado);
+}
+.vaga-esgotada .ponto-status {
+  background-color: var(--status-esgotado);
+}
+
+/* Botões do Card */
+.btn-inscrever {
+  width: 100%;
+  background-color: var(--azul-ccbb);
+  color: #FFFFFF;
+  border: none;
+  padding: 12px 16px;
+  border-radius: var(--raio-botao);
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all var(--tempo-transicao) var(--transicao-suave);
+}
+
+.btn-inscrever:hover:not(:disabled) {
+  background-color: var(--azul-ccbb-claro);
+  box-shadow: 0 4px 12px rgba(0, 45, 114, 0.25);
+  transform: translateY(-1px);
+}
+
+.btn-inscrever:disabled {
+  background-color: #E2E8F0;
+  color: #94A3B8;
+  cursor: not-allowed;
+}
+
+/* --------------------------------------------------------------------------
+   6. SEÇÃO DE PESQUISA DE CAMPO & VISITA TÉCNICA
+   -------------------------------------------------------------------------- */
+.secao-pesquisa-campo {
+  margin: 20px auto 60px auto;
+}
+
+.card-pesquisa-campo {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  background-color: var(--fundo-card);
+  border: 1px solid var(--borda-sutil);
+  border-radius: var(--raio-card);
+  overflow: hidden;
+  box-shadow: var(--sombra-card);
+}
+
+.imagem-equipe-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  background-color: #E2E8F0;
+}
+
+.img-equipe-fatec {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.badge-pesquisa {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  background-color: rgba(0, 26, 66, 0.9);
+  color: #FFFFFF;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 6px;
+  backdrop-filter: blur(4px);
+}
+
+.conteudo-pesquisa-campo {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+}
+
+.titulo-pesquisa-campo {
+  font-family: var(--fonte-display);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--azul-ccbb-profundo);
+  letter-spacing: 0.3px;
+}
+
+.texto-pesquisa-campo {
+  font-size: 13.5px;
+  color: var(--texto-secundario);
+  line-height: 1.7;
+}
+
+.dados-pesquisa {
+  display: flex;
+  gap: 14px;
+  margin-top: 10px;
+  padding-top: 16px;
+  border-top: 1px solid var(--borda-sutil);
+  flex-wrap: wrap;
+}
+
+.item-dado-pesquisa {
+  background-color: var(--fundo-elevado);
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--borda-sutil);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   7. ÁREA DE MEUS INGRESSOS (ABA 2)
+   -------------------------------------------------------------------------- */
+.secao-meus-ingressos {
+  padding: 36px 0 64px 0;
+}
+
+.cabecalho-secao-ingressos {
+  margin-bottom: 28px;
+}
+
+.tag-secao {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--azul-ccbb);
+  letter-spacing: 0.8px;
+  margin-bottom: 4px;
+}
+
+.titulo-secao {
+  font-family: var(--fonte-display);
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--azul-ccbb-profundo);
+}
+
+.subtitulo-secao {
+  font-size: 14px;
+  color: var(--texto-secundario);
+  margin-top: 4px;
+}
+
+.grade-ingressos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 24px;
+}
+
+.transicao-aba {
+  animation: fadeInAba 0.25s var(--transicao-suave);
+}
+
+@keyframes fadeInAba {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.alerta-vazio {
+  text-align: center;
+  padding: 64px 24px;
+  background-color: var(--fundo-card);
+  border: 1px dashed var(--borda-media);
+  border-radius: var(--raio-card);
+  margin: 32px 0;
+}
+
+.icone-vazio-svg {
+  color: var(--texto-terciario);
+  margin-bottom: 14px;
+  display: flex;
+  justify-content: center;
+}
+
+.titulo-vazio {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--texto-principal);
+  margin-bottom: 6px;
+}
+
+.descricao-vazio {
+  color: var(--texto-secundario);
+  font-size: 14px;
+  max-width: 480px;
+  margin: 0 auto 20px auto;
+  line-height: 1.6;
+}
+
+/* --------------------------------------------------------------------------
+   8. JANELAS MODAIS COM ANIMAÇÃO LEVE
+   -------------------------------------------------------------------------- */
+.modal-fundo {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(15, 23, 42, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  backdrop-filter: blur(5px);
+  animation: modalBackdropFade 0.25s ease-out;
+}
+
+@keyframes modalBackdropFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-conteudo {
+  background-color: var(--fundo-card);
+  width: 100%;
+  max-width: 540px;
+  border-radius: 18px;
+  box-shadow: var(--sombra-modal);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+  animation: modalSlideUp 0.3s var(--transicao-suave);
+}
+
+@keyframes modalSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modal-cabecalho {
+  background-color: var(--azul-ccbb-profundo);
+  color: #FFFFFF;
+  padding: 22px 24px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.tag-modal {
+  background-color: var(--amarelo-bb);
+  color: var(--azul-ccbb-profundo);
+  font-size: 10.5px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.modal-titulo-evento {
+  font-family: var(--fonte-display);
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 6px;
+  letter-spacing: 0.3px;
+}
+
+.modal-subtitulo-evento {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.btn-fechar-modal {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #FFFFFF;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--tempo-transicao) ease;
+}
+
+.btn-fechar-modal:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  transform: rotate(90deg);
+}
+
+.modal-corpo {
+  padding: 24px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Campos de Formulário */
+.campo-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.rotulo-campo {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--texto-principal);
+}
+
+.campo-obrigatorio {
+  color: var(--status-esgotado);
+}
+
+.campo-texto,
+.campo-select {
+  padding: 11px 14px;
+  border: 1.5px solid var(--borda-sutil);
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--texto-principal);
+  background-color: #FFFFFF;
+  transition: all var(--tempo-transicao) ease;
+}
+
+.campo-texto:focus,
+.campo-select:focus {
+  outline: none;
+  border-color: var(--azul-ccbb);
+  box-shadow: 0 0 0 3.5px rgba(0, 45, 114, 0.1);
+}
+
+.ajuda-campo {
+  font-size: 11.5px;
+  color: var(--texto-secundario);
+}
+
+.linha-dupla {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* Caixa de Acessibilidade */
+.caixa-acessibilidade {
+  background-color: var(--dourado-suave);
+  border: 1px solid #FDE68A;
+  padding: 14px;
+  border-radius: 8px;
+}
+
+.rotulo-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 12px;
+  color: #78350F;
+  cursor: pointer;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.rotulo-checkbox input {
+  margin-top: 3px;
+  accent-color: var(--azul-ccbb);
+}
+
+.alerta-erro {
+  background-color: #FEF2F2;
+  border: 1px solid #FCA5A5;
+  color: #991B1B;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.modal-rodape {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid var(--borda-sutil);
+}
+
+.btn-acao-primaria {
+  background-color: var(--azul-ccbb);
+  color: #FFFFFF;
+  border: none;
+  padding: 11px 22px;
+  border-radius: var(--raio-botao);
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--tempo-transicao) var(--transicao-suave);
+}
+
+.btn-acao-primaria:hover {
+  background-color: var(--azul-ccbb-claro);
+  box-shadow: 0 4px 10px rgba(0, 45, 114, 0.2);
+  transform: translateY(-1px);
+}
+
+.btn-acao-secundaria {
+  background-color: var(--fundo-elevado);
+  color: var(--texto-principal);
+  border: 1px solid var(--borda-sutil);
+  padding: 11px 18px;
+  border-radius: var(--raio-botao);
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all var(--tempo-transicao) ease;
+}
+
+.btn-acao-secundaria:hover {
+  background-color: #E2E8F0;
+  border-color: var(--borda-media);
+}
+
+/* --------------------------------------------------------------------------
+   9. COMPROVANTE DIGITAL (SMART CULTURAL PASS)
+   -------------------------------------------------------------------------- */
+.modal-comprovante-conteudo {
+  padding: 28px;
+  max-width: 480px;
+}
+
+.topo-sucesso {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.circulo-icone-sucesso {
+  width: 52px;
+  height: 52px;
+  background-color: #ECFDF5;
+  color: var(--status-disponivel);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px auto;
+  border: 1px solid #A7F3D0;
+  animation: sucessoPop 0.4s var(--transicao-suave);
+}
+
+@keyframes sucessoPop {
+  0% { transform: scale(0.5); opacity: 0; }
+  70% { transform: scale(1.15); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.titulo-sucesso {
+  font-family: var(--fonte-display);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--azul-ccbb-profundo);
+}
+
+.subtitulo-sucesso {
+  font-size: 13px;
+  color: var(--texto-secundario);
+  margin-top: 4px;
+}
+
+.bilhete-cultural {
+  background: linear-gradient(to bottom, #FFFFFF 0%, #F8FAFC 100%);
+  border: 1.5px dashed var(--borda-media);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 22px;
+  box-shadow: 0 4px 8px -2px rgba(15, 23, 42, 0.04);
+}
+
+.bilhete-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--borda-sutil);
+  margin-bottom: 14px;
+}
+
+.bilhete-instituicao {
+  font-size: 10.5px;
+  font-weight: 800;
+  color: var(--azul-ccbb);
+  letter-spacing: 0.6px;
+}
+
+.bilhete-codigo {
+  font-size: 12px;
+  font-weight: 800;
+  font-family: monospace;
+  background-color: var(--azul-ccbb-suave);
+  color: var(--azul-ccbb);
+  padding: 3px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+
+.bilhete-evento {
+  font-family: var(--fonte-display);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--texto-principal);
+}
+
+.bilhete-espaco {
+  font-size: 12px;
+  color: var(--dourado-patrimonial);
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.grade-detalhes-bilhete {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  padding-bottom: 18px;
+  border-bottom: 1px dashed var(--borda-sutil);
+}
+
+.rotulo-mini {
+  display: block;
+  font-size: 10px;
+  color: var(--texto-secundario);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.valor-mini {
+  font-size: 13px;
+  color: var(--texto-principal);
+  font-weight: 600;
+}
+
+.valor-gratis {
+  color: var(--status-disponivel);
+  font-weight: 800;
+}
+
+.area-qrcode {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 18px;
+}
+
+.desenho-qrcode {
+  background-color: #FFFFFF;
+  padding: 8px;
+  border: 1px solid var(--borda-sutil);
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.instrucao-portaria {
+  font-size: 11px;
+  color: var(--texto-secundario);
+  margin-top: 10px;
+  text-align: center;
+}
+
+.botoes-comprovante {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+/* --------------------------------------------------------------------------
+   10. RODAPÉ INSTITUCIONAL
+   -------------------------------------------------------------------------- */
+.rodape-principal {
+  background-color: var(--azul-ccbb-profundo);
+  color: #94A3B8;
+  padding: 48px 0 24px 0;
+  margin-top: 64px;
+  font-size: 13px;
+}
+
+.container-rodape {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 36px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.titulo-coluna-rodape {
+  font-family: var(--fonte-display);
+  color: #FFFFFF;
+  font-size: 14.5px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+}
+
+.texto-rodape {
+  line-height: 1.7;
+}
+
+.barra-copyright {
+  text-align: center;
+  padding-top: 24px;
+  font-size: 12px;
+  color: #64748B;
+}
+
+/* --------------------------------------------------------------------------
+   11. ESTILOS DE IMPRESSÃO (@media print)
+   -------------------------------------------------------------------------- */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  #modal-comprovante,
+  #modal-comprovante * {
+    visibility: visible;
+  }
+
+  #modal-comprovante {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: transparent;
+    padding: 0;
+  }
+
+  .botoes-comprovante {
+    display: none;
+  }
+
+  .modal-conteudo {
+    box-shadow: none;
+    border: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   12. ACESSIBILIDADE E PREFERS-REDUCED-MOTION
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   13. RESPONSIVIDADE (TABLET & MOBILE)
+   -------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .container-hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card-pesquisa-campo {
+    grid-template-columns: 1fr;
+  }
+
+  .imagem-equipe-container {
+    height: 240px;
+  }
+}
+
+@media (max-width: 768px) {
+  .titulo-hero {
+    font-size: 26px;
+  }
+
+  .container-cabecalho {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navegacao-abas {
+    width: 100%;
+  }
+
+  .btn-aba {
+    flex: 1;
+    justify-content: center;
+    padding: 8px 12px;
+  }
+
+  .linha-dupla {
+    grid-template-columns: 1fr;
+  }
+
+  .grade-detalhes-bilhete {
+    grid-template-columns: 1fr;
+  }
+
+  .botoes-comprovante {
+    flex-direction: column;
+  }
+}

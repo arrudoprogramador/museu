@@ -1,0 +1,8 @@
+# Dependências de IA / Skills
+.agents/
+skills-lock.json
+
+# Logs e arquivos de sistema
+*.log
+.DS_Store
+Thumbs.db
